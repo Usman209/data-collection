@@ -15,12 +15,10 @@ const redisOptions = {
 // Define a queue for data processing
 const syncDataQueue = new Queue('syncDataQueue', { redis: redisOptions });
 
-
 // Create BullMaster instance to monitor the queue
-const bullMasterApp =  bullMaster({
+const bullMasterApp = bullMaster({
     queues: [syncDataQueue]  // Pass the queue you want to monitor
 });
-
 
 bullMasterApp.getQueues();
 bullMasterApp.setQueues([syncDataQueue]);
@@ -46,12 +44,12 @@ async function insertDataDynamically(type, data, currentDate) {
 
         let dynamicModel;
 
-        if (collectionExists) {
-            const schema = createDynamicSchema();
-            dynamicModel = mongoose.model(collectionName, schema, collectionName);
+        // Check if model already exists to prevent overwriting
+        if (mongoose.models[collectionName]) {
+            dynamicModel = mongoose.model(collectionName); // Use the existing model
         } else {
             const schema = createDynamicSchema();
-            dynamicModel = mongoose.model(collectionName, schema, collectionName);
+            dynamicModel = mongoose.model(collectionName, schema, collectionName); // Create a new model
         }
 
         for (const record of data) {
