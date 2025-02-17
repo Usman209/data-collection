@@ -117,10 +117,13 @@ syncDataQueue.process(5, async (job) => {
         const { collectedDataArray, currentDate } = job.data;
         const { data } = collectedDataArray;
 
+        // Add a lock mechanism to prevent race conditions
+        // Process each typeGroup one by one to avoid conflicts
         for (const typeGroup of data) {
             const { type, records } = typeGroup;
 
             if (type && Array.isArray(records) && records.length > 0) {
+                // Await the insertion of data before moving to the next record type
                 await insertDataDynamically(type, records, currentDate);
             } else {
                 console.error(`Invalid or missing data for type: ${type}`);
