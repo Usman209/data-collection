@@ -5,7 +5,7 @@ const bullMaster = require('bull-master');
 
 // Redis configuration for Bull queue
 const redisOptions = {
-    host: 'localhost',
+    host: 'redis',
     port: 6379,
     lifo: false,
     removeOnComplete: true,
