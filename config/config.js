@@ -9,6 +9,7 @@ module.exports = {
   COOKIE_NAME: process.env.COOKIE_NAME,
   TOKEN_SECRET: process.env.TOKEN_SECRET,
   JWT_EXPIRES_IN: process.env.JWT_EXPIRES_IN,
-  REDIS_HOST: process.env.REDIS_HOST,
-  REDIS_PORT: process.env.REDIS_PORT,
+  REDIS_HOST:'redis',
+  REDIS_PORT: 6379,
 };
+
