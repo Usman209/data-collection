@@ -13,6 +13,9 @@ RUN npm install --legacy-peer-deps
 # Copy the rest of the application files
 COPY . .
 
+# Copy the environment variables file (if using .env)
+COPY .env .env
+
 # Expose the port the app will run on
 EXPOSE 4000
 
