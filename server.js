@@ -11,7 +11,6 @@ const Queue = require('bull');
 const redisClient = require('./config/redis.js'); // Adjust the path based on your file structure
 require("dotenv").config();
 
-require('./clean.js');
 const { HOST, SESS_SECRET } = require("./config/config");
 
 

@@ -1,10 +1,9 @@
-// lib/redisClient.js
 const Redis = require('ioredis');
-require('dotenv').config(); // Load environment variables from .env file
+const { REDIS_HOST, REDIS_PORT } = require('../config/config'); // Import only from config.js
 
 const redisClient = new Redis({
-  host: process.env.REDIS_HOST || 'redis', // Use the REDIS_HOST from env or default to localhost
-  port: 6379,       // Use the REDIS_PORT from env or default to 6379
+  host: REDIS_HOST, 
+  port: REDIS_PORT,
 });
 
 module.exports = redisClient;

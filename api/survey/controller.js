@@ -2,11 +2,11 @@ const mongoose = require('mongoose');
 const moment = require('moment');
 const Queue = require('bull');
 const bullMaster = require('bull-master');
+const { REDIS_HOST, REDIS_PORT } = require('../../config/config'); // Import only from config.js
 
-// Redis configuration for Bull queue
 const redisOptions = {
-    host: 'redis',
-    port: 6379,
+    host: REDIS_HOST,
+    port: REDIS_PORT,
     lifo: false,
     removeOnComplete: true,
     removeOnFail: true
